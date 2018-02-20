@@ -12,7 +12,10 @@
     <transition name="fade">
       <p v-if="last"> Last move: {{ last }} </p>
     </transition>
-    <button v-for="n in 6" @click="move(n, 1)">{{ n }}</button>
+    <p v-if="p1.moved">waiting for your fiend to move</p>
+    <p v-else>
+      <button v-for="n in 6" @click="move(n, 1)">{{ n }}</button>
+    </p>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
