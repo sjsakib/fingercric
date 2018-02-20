@@ -18,9 +18,22 @@ function vmCreated() {
   socket.on('connect', function(){
     socket.emit('join room', vm.roomId);
   });
+
+  socket.on('toss', function(res){
+    if(res === 0) {
+      vm.p1.batting = false;
+      vm.p2.batting = true;
+    }
+  });
+
+  socket.on('move', function(n){
+    console.log('received move');
+    vm.move(n, 2);
+  });
 }
 
 function move(n, player) {
+  if(player === 1) this.socket.emit('move', {roomId: this.roomId, n: n});
   var p1 = this.p1;
   var p2 = this.p2;
   if (player === 1) p1.moved = n;
@@ -72,8 +85,6 @@ function move(n, player) {
     p1.moved = 0;
     p2.moved = 0;
   }
-
-  if (player === 1) this.move(Math.ceil(Math.random() * 6), 2);
 }
 
 var app = new Vue({
@@ -87,7 +98,7 @@ var app = new Vue({
       batting: true,
     },
     p2: {
-      name: 'Player 2',
+      name: 'Your friend',
       moved: 0,
       score: 0,
       batting: false,
