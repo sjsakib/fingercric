@@ -1,0 +1,9 @@
+{
+    "name": "fingercric-server",
+    "version": "0.0.1",
+    "description": "Simple socket.io server for fingercric",
+    "author": "sjsakib",
+    "dependencies": {
+        "socket.io": "^2.0.4"
+    }
+}

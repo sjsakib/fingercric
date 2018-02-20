@@ -1,0 +1,4 @@
+*.sublime-project
+*.sublime-workspace
+client/conf.js
+server/node_modules

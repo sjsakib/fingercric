@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <title>Finger cricket</title>
+</head>
+
+<body>
+  <h1>Finger cricket</h1>
+  <div id="app">
+    <playerbar :player="p1" key="1"></playerbar> <br>
+    <playerbar :player="p2" key="2"></playerbar><br>
+    <transition name="fade">
+      <p v-if="last"> Last move: {{ last }} </p>
+    </transition>
+    <button v-for="n in 6" @click="move(n, 1)">{{ n }}</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+  <script src="conf.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>
