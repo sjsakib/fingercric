@@ -1,0 +1,12 @@
+[Unit]
+Description=node server for DOMAIN
+
+[Service]
+Restart=on-failure
+User=USERNAME
+WorkingDirectory=/home/USERNAME/sites/DOMAIN/server
+
+ExecStart=node index.js
+
+[Install]
+WantedBy=multi-user.target
