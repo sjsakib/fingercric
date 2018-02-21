@@ -1,26 +1,72 @@
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
   <title>Finger cricket</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 
 <body>
-  <h1>Finger cricket</h1>
+  <h1>Finger Cricket</h1>
   <div id="app">
-    <playerbar :player="p1" key="1"></playerbar> <br>
-    <playerbar :player="p2" key="2"></playerbar><br>
-    <transition name="fade">
-      <p v-if="last"> Last move: {{ last }} </p>
-    </transition>
+    <playerbar :player="p2" key="2"></playerbar>
+    <div calss="last-move">
+      <div class="score-card">
+        {{last.p2}}
+      </div>
+      <div class="score-card">
+        {{last.p1}}
+      </div>
+    </div>
+    <playerbar :player="p1" key="1"></playerbar>
     <p v-if="p1.moved">waiting for your fiend to move</p>
     <p v-else>
       <button v-for="n in 6" @click="move(n, 1)">{{ n }}</button>
     </p>
+    <!-- modals -->
+    <modal v-if="waiting">
+      <h3 slot="header">Waiting for opponent</h3>
+      <div slot="body">
+        Copy and share this link with your friend to play the game with them<br>
+        <input v-model="href" selected>
+      </div>
+      <div slot="footer"></div>
+    </modal>
   </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script> -->
+  <script src="vue.js"></script>
+  <script src="socket.io.js"></script>
   <script src="conf.js"></script>
+  
+  <!-- template for the modal component -->
+  <script type="text/x-template" id="modal-template">
+    <transition name="modal">
+      <div class="modal-mask">
+        <div class="modal-wrapper">
+          <div class="modal-container">
+            <div class="modal-header">
+              <slot name="header">
+                default header
+              </slot>
+            </div>
+            <div class="modal-body">
+              <slot name="body">
+                default body
+              </slot>
+            </div>
+            <div class="modal-footer">
+              <slot name="footer">
+                <button class="modal-default-button" @click="$emit('close')">
+                  OK
+                </button>
+              </slot>
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+  </script>
   <script src="main.js"></script>
 </body>
 
