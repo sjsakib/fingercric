@@ -6,7 +6,7 @@ Restart=on-failure
 User=USERNAME
 WorkingDirectory=/home/USERNAME/sites/DOMAIN/server
 
-ExecStart=node index.js
+ExecStart=/usr/bin/node /home/USERNAME/sites/DOMAIN/server/index.js
 
 [Install]
 WantedBy=multi-user.target
