@@ -29,13 +29,13 @@
     <playerbar :player="p1" key="1"></playerbar>
     <p v-if="p1.moved">waiting for your fiend to move</p>
     <p v-else>
-      <button v-for="n in 6" @click="move(n, 1)">{{ n }}</button>
+      <button class="strike" v-for="n in 6" @click="move(n, 1)">{{ n }}</button>
     </p>
     <!-- modals -->
     <modal v-if="waiting">
       <h3 slot="header">Waiting for opponent</h3>
       <div slot="body">
-        Copy and share this link with your friend to play the game with them<br>
+        Copy and share this link with your friend to play the game with them <br><br>
         <input v-model="href" selected>
       </div>
       <div slot="footer"></div>
